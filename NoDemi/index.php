@@ -30,6 +30,8 @@ session_start();
         include "classes.php";
         $nav = new navbar();
         $nav->simple();
+        $regis = false;
+        $mal = 0;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["salir"])) {
@@ -55,10 +57,11 @@ session_start();
                     $_SESSION["correo"] = $result[3];
                     $_SESSION["usuario"] = $result[4];
                     $_SESSION["contraseishon"] = $result[5];
-                    $_SESSION["genero"] = $result[6];
-                    $_SESSION["nacimiento"] = $result[7];
-                    $_SESSION["privilegio"] = $result[8];
-                    $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"]);
+                    $_SESSION["imagen"] = $result[6];
+                    $_SESSION["genero"] = $result[7];
+                    $_SESSION["nacimiento"] = $result[8];
+                    $_SESSION["privilegio"] = $result[9];
+                    $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"], $_SESSION["imagen"]);
                 } else {
                     if ($regis) {
                         $mal += 1;
@@ -70,7 +73,7 @@ session_start();
             }
         } else {
             if (isset($_SESSION["usuario"])) {
-                $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"]);
+                $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"], $_SESSION["imagen"]);
             } else {
                 $_SESSION["usuario"] = null;
                 $nav->notSession();
@@ -476,30 +479,11 @@ session_start();
 
 
             <div class="barra overflow-auto">
-
-                <div class="separador user-select-none">CATEGORÍAS</div>
-
-                <div class="category user-select-none" style="background: #3300cc" onclick="redirect('cursosCategoria.html')">
-                    Arte
-                </div>
-                <div class="category user-select-none" style="background: #333300" onclick="redirect('cursosCategoria.html')">
-                    Finanzas
-                </div>
-                <div class="category user-select-none" style="background: #ff9999" onclick="redirect('cursosCategoria.html')">
-                    Superación Personal
-                </div>
-                <div class="category user-select-none" style="background: #6666ff" onclick="alertaRoja()">
-                    Alerta Roja
-                </div>
-                <div class="category user-select-none" style="background: #ff6633">
-                    Al Formato
-                </div>
-                <div class="category user-select-none" style="background: #ff6633" onclick="redirect('myself.html')">
-                    Al Perfil
-                </div>
-                <div class="category user-select-none" style="background: #ff6633" onclick="redirect('myselfTeach.html')">
-                    Al Perfil del Maestro
-                </div>
+                <div class="separador">CATEGORÍAS</div>
+                <?php
+                $barra = new category();
+                $barra->llenaLaBarra();
+                ?>
             </div>
         </div>
 

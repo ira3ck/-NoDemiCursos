@@ -438,12 +438,6 @@ class inicioRegistro {
         return $result;
     }
 
-    function regReportero($telefono, $correo, $usuario, $contraseña) {
-        $conn = new mySQLphpClass();
-        $result = $conn->usuarios(null, null, null, $telefono, $correo, $usuario, $contraseña, null, null, null, 'Reportero', null, 'I');
-        return $result;
-    }
-
 }
 
 class preview {

@@ -19,9 +19,9 @@ class category {
         $result = $conn->get_secciones();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                if ($row["Estado"] == "a") {
+                if ($row["Activo"] == "1") {
                     $nombre = rawurlencode($row["Nombre"]);
-                    echo "<div class='category user-select-none' onclick=" . "Redirect('index.php?variable1=" . $nombre . "')" . " style='background: #" . $row["Color"] . "'>" . $row["Nombre"] . "</div>";
+                    echo "<div class='category user-select-none' onclick=" . "Redirect('index.php?variable1=" . $nombre . "')" . " style='background: #d7c2fc'>" . $row["Nombre"] . "</div>";
                 }
             }
         } else {
@@ -386,7 +386,7 @@ class navbar {
         echo $code;
     }
 
-    function yesSession($nombre, $privilegio) {
+    function yesSession($nombre, $privilegio, $imagen) {
         $page = 'index.php';
         $profile = "";
         $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
@@ -401,6 +401,10 @@ class navbar {
         echo "<nav class='nav navbar navbar-expand-lg navbar-dark fixed-top'>
                     <a class='navbar-brand' href='index.php'>noDemi</a>    
                     <div class='div-inline ml-auto  usuarioNav' > ";
+        $img_str = base64_encode($imagen);
+        if (!empty($imagen)) {
+            $img = "data:image/jpg;base64," . $img_str;
+        }
         echo '<img src="' . $img . '" class="imgNavBar float-left imagenUserNavbar" alt="img de navbar "/>';
         echo "<a class='nav-link dropdown-toggle usuarioNomNav' href='#' id='navbarDropdown nav' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                             " . $nombre . " 
@@ -408,7 +412,7 @@ class navbar {
                         <div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
                             <form action = 'index.php' method = 'post'>
                                 " . $profile . "
-                                <a class='dropdown-item' href='ConfigUser.php'>Configuracion de Perfil</a>
+                                <a class='dropdown-item' href='ConfigUser.php'>Configuración de Perfil</a>
                                 <div class='dropdown-divider'></div>
                                 <input type='submit'  href='index.php' class='button mx-3 px-5' name='salir' value='Salir' style='background=azure; border=none;'/>
                             </form>
@@ -429,13 +433,13 @@ class inicioRegistro {
 
     function registro($correo, $usuario, $contraseña) {
         $conn = new mySQLphpClass();
-        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, 'Alumno', null, 'I');
+        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Alumno', null, 'I');
         return $result;
     }
 
     function regReportero($correo, $usuario, $contraseña) {
         $conn = new mySQLphpClass();
-        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, 'Maestro', null, 'I');
+        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Maestro', null, 'I');
         return $result;
     }
 

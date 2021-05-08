@@ -114,7 +114,7 @@ and open the template in the editor.
     color: azure;
 }
 .perfil h3{
-    font-size: 3vw;
+    font-size: 4vh;
     border: dotted azure 2px;
     border-radius: 50px
 }
@@ -390,7 +390,7 @@ body {
 .imgReviewPrevieEditor{
     width: 150px !important;
     height: 150px !important;
- 
+
 }
 
 .tituloPrewieEditor{
@@ -661,58 +661,58 @@ input[type = "radio"]:checked ~ label{color:orange;}
     width: 50px;
     margin: 0 auto;
     height: 50px;
-  }
+}
 
-  #form p {
+#form p {
     text-align: center;
-  }
+}
 
-  #form label {
+#form label {
     font-size: 200px;
-  }
+}
 
-  input[type="radio"] {
+input[type="radio"] {
     display: none;
-  }
+}
 
-  #estrella{
+#estrella{
     font-size: 50px;
     color: grey;
 
-  }
+}
 
-  .clasificacion {
+.clasificacion {
 
     direction: rtl;
     unicode-bidi: bidi-override;
-  }
+}
 
-  #estrella:hover,
-  #estrella:hover ~ #estrella {
+#estrella:hover,
+#estrella:hover ~ #estrella {
     font-size: 50px;
     color: orange;
-  }
+}
 
-  input[type="radio"]:checked ~ #estrella {
+input[type="radio"]:checked ~ #estrella {
     font-size: 50px;
 
     color: orange;
-  }
+}
 
-  .calificacionC{
+.calificacionC{
     display: flex;
     align-items: start;
 
-  }
+}
 
-  .child {
+.child {
     padding: 1rem;
-  }
-  .img-centro {
+}
+.img-centro {
     margin: 10px auto 10px;
     display: block;
-  }
-  .videoClase{
+}
+.videoClase{
 
     width: 100%; 
     height: auto;
@@ -729,3 +729,36 @@ input[type = "radio"]:checked ~ label{color:orange;}
     padding-right: 10%;
     background: #fbf2ff;
 }
+
+
+
+/*---- Croppie ----*/
+
+.upload-demo .upload-demo-wrap,
+.upload-demo .upload-result,
+.upload-demo.ready .upload-msg {
+    display: none;
+}
+.upload-demo.ready .upload-demo-wrap {
+    display: block;
+}
+.upload-demo.ready .upload-result {
+    display: inline-block;    
+}
+.upload-demo-wrap {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.upload-msg {
+    text-align: center;
+    padding: 50px;
+    font-size: 22px;
+    color: #aaa;
+    width: 260px;
+    margin: 50px auto;
+    border: 1px solid #aaa;
+}
+
+/*---- Croppie Fin----*/

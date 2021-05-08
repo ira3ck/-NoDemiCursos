@@ -59,9 +59,9 @@ class mySQLphpClass extends configSQLphp {
         return $string;
     }
 
-    function usuarios($nombre, $paterno, $materno, $correo, $usuario, $contraseña, $genero, $nacimiento, $privilegio, $newUser, $seleccion) {
+    function usuarios($nombre, $paterno, $materno, $correo, $usuario, $contraseña, $imagen, $genero, $nacimiento, $privilegio, $newUser, $seleccion) {
         $this->connect();
-        $sql = "call proc_dml_usuario(" . $this->varQuery($nombre) . ", " . $this->varQuery($paterno) . ", " . $this->varQuery($materno) . ", " . $this->varQuery($correo) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($contraseña) . ", " . $this->varQuery($genero) . ", " . $this->varQuery($nacimiento) . ", " . $this->varQuery($privilegio) . ", " . $this->varQuery($newUser) . ", " . $this->varQuery($seleccion) . ");";
+        $sql = "call proc_dml_usuario(" . $this->varQuery($nombre) . ", " . $this->varQuery($paterno) . ", " . $this->varQuery($materno) . ", " . $this->varQuery($correo) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($contraseña) . ", " . $this->varQuery($imagen) . ", " . $this->varQuery($genero) . ", " . $this->varQuery($nacimiento) . ", " . $this->varQuery($privilegio) . ", " . $this->varQuery($newUser) . ", " . $this->varQuery($seleccion) . ");";
         $this->connectionString->query($sql);
         $this->byebye();
         return $sql;
@@ -75,12 +75,11 @@ class mySQLphpClass extends configSQLphp {
         return 0;
     }
 
-    function noticias($codigo, $lugar, $fecha, $fechaPost, $reportero, $titulo, $desc, $seccion, $estado, $commEDT, $keywords, $likes, $seleccion) {
+    function cursos($id, $nombre, $descripcion, $precio, $imagen, $usuario, $publicada, $seleccion) {
         
         $this->connect();
-        $sql = "call proc_dml_noticia(" . $this->varQuery($codigo) . ", " . $this->varQuery($lugar) . ", " . $this->varQuery($fecha) . ", " . $this->varQuery($fechaPost)
-                . ", " . $this->varQuery($reportero) . ", " . $this->varQuery($titulo) . ", " . $this->varQuery($desc) . ", " . $this->varQuery($seccion) . ", "
-                . $this->varQuery($estado) . ", " . $this->varQuery($commEDT) . ", " . $this->varQuery($keywords) . ", " . $this->varQuery($likes) . ", " . $this->varQuery($seleccion) . ");";
+        $sql = "call proc_dml_noticia(" . $this->varQuery($id) . ", " . $this->varQuery($nombre) . ", " . $this->varQuery($descripcion) . ", " . $this->varQuery($precio) . ", " 
+                . $this->varQuery($imagen) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($publicada) . ", " . $this->varQuery($seleccion) . ");";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;
@@ -105,7 +104,7 @@ class mySQLphpClass extends configSQLphp {
 
     function get_secciones() {
         $this->connect();
-        $sql = "call proc_secciones();";
+        $sql = "call proc_categorias();";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;
@@ -179,7 +178,7 @@ class mySQLphpClass extends configSQLphp {
             while ($row = $result->fetch_assoc()) {
                 
                 $result2 = array($row["nombre"], $row["apellidoPaterno"], $row["apellidoMaterno"], $row["correo"],
-                $row["usuario"], $row["contraseña"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"],);
+                $row["usuario"], $row["contraseña"], $row["imagen"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"],);
             }
         } else {
             $result2 = null;
