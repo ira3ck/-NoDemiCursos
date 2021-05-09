@@ -59,9 +59,9 @@ class mySQLphpClass extends configSQLphp {
         return $string;
     }
 
-    function usuarios($nombre, $paterno, $materno, $correo, $usuario, $contraseña, $imagen, $genero, $nacimiento, $privilegio, $newUser, $seleccion) {
+    function usuarios($nombre, $paterno, $materno, $correo, $usuario, $contraseña, $imagen, $genero, $nacimiento, $privilegio, $newUser, $eliminado , $seleccion) {
         $this->connect();
-        $sql = "call proc_dml_usuario(" . $this->varQuery($nombre) . ", " . $this->varQuery($paterno) . ", " . $this->varQuery($materno) . ", " . $this->varQuery($correo) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($contraseña) . ", " . $this->varQuery($imagen) . ", " . $this->varQuery($genero) . ", " . $this->varQuery($nacimiento) . ", " . $this->varQuery($privilegio) . ", " . $this->varQuery($newUser) . ", " . $this->varQuery($seleccion) . ");";
+        $sql = "call proc_dml_usuario(" . $this->varQuery($nombre) . ", " . $this->varQuery($paterno) . ", " . $this->varQuery($materno) . ", " . $this->varQuery($correo) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($contraseña) . ", " . $this->varQuery($imagen) . ", " . $this->varQuery($genero) . ", " . $this->varQuery($nacimiento) . ", " . $this->varQuery($privilegio) . ", " . $this->varQuery($newUser) . ", " . $this->varQuery($eliminado) . ", " . $this->varQuery($seleccion) . ");";
         $this->connectionString->query($sql);
         $this->byebye();
         return $sql;
@@ -177,7 +177,7 @@ class mySQLphpClass extends configSQLphp {
             while ($row = $result->fetch_assoc()) {
                 
                 $result2 = array($row["nombre"], $row["apellidoPaterno"], $row["apellidoMaterno"], $row["correo"],
-                $row["usuario"], $row["contraseña"], $row["imagen"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"],);
+                $row["usuario"], $row["contraseña"], $row["imagen"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"],$row["Eliminado"],);
             }
         } else {
             $result2 = null;

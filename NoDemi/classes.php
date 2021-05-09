@@ -433,7 +433,7 @@ class inicioRegistro {
 
     function registro($correo, $usuario, $contraseña) {
         $conn = new mySQLphpClass();
-        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Alumno', null, 'I');
+        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Alumno', null, '0' ,'I');
         return $result;
     }
 
