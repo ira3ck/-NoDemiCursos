@@ -33,6 +33,43 @@ and open the template in the editor.
         include "classes.php";
         $nav = new navbar();
         $nav->simple();
+        $news = new mySQLphpClass();
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if (array_key_exists('createNew', $_POST)) {
+                $result = $news->cursos(null, "Nombre de ejemplo", "Breve descripción de su curso", "0.99", null, $_SESSION["usuario"], "0", "Cuéntanos qué incluye tu curso", "I");
+                $row = $result->fetch_assoc();
+                $_SESSION["noticiaActual"] = $row["código"];
+            }
+
+            if (array_key_exists('existent', $_POST)) {
+                $_SESSION["noticiaActual"] = $_POST["existent"];
+            }
+            
+            if (array_key_exists('changes', $_POST)) {
+                //$news->cursos($id, $nombre, $descripcion, $precio, $imagen, $usuario, $publicada, $incluye, $seleccion);
+                //echo $_POST["nombreCurso"];
+                //echo $_POST["descCurso"];
+                //echo $_POST["precioCurso"];
+                //echo $_POST["incluyeCurso"];
+                $news->cursos($_SESSION["noticiaActual"], $_POST["nombreCurso"], $_POST["descCurso"], $_POST["precioCurso"], null, $_SESSION["usuario"], null, $_POST["incluyeCurso"], 'U');
+            }
+        }
+
+        $news = new mySQLphpClass();
+        $result = $news->get_misCursos($_SESSION["noticiaActual"], null);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $nombre = $row["nombre"];
+                $desc = $row["descripcion"];
+                $precio = $row["precio"];
+                $imagen = $row["imagen"];
+                $incluye = $row["incluye"];
+            }
+        } else {
+            echo "0 results";
+        }
 
         if (isset($_SESSION["usuario"])) {
             $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"], $_SESSION["imagen"]);
@@ -40,6 +77,8 @@ and open the template in the editor.
             $_SESSION["usuario"] = null;
             header('Location: index.php');
         }
+        
+        //echo $_SESSION["noticiaActual"];
         ?>
 
         <script>
@@ -80,36 +119,37 @@ and open the template in the editor.
                     <div class="row"> 
 
                         <div class="col" >
-                            <form action="" onsubmit="">
+                            <form action="crearCurso.php" method="post" enctype='multipart/form-data'>
 
                                 <h1>Datos del curso</h1>
 
                                 <label for="NombreC">Nombre del curso</label>
-                                <input type="text" class="form-control campoConfig" id="nombreCurso" name="nombreCurso" placeholder="">
+                                <input type="text" class="form-control campoConfig" id="nombreCurso" name="nombreCurso" placeholder="" value="<?php echo $nombre; ?>" maxlength="255">
 
                                 <label for="mailCofig">Descripción corta</label>
-                                <input type="text" class="form-control campoConfig" id="descCurso" name="descCurso" placeholder="">
+                                <input type="text" class="form-control campoConfig" id="descCurso" name="descCurso" placeholder="" value="<?php echo $desc; ?>" maxlength="100">
 
                                 <label for="contraConfig">Imagen</label> <br>
                                 <input type="file"><br><br>
 
                                 <label for="confirmarContraConfig">Qué incluye</label>
-                                <input type="text" class="form-control campoConfig" id="confirmarContraConfig" name="confirmarContraConfig" placeholder=" ">
+                                <input type="text" class="form-control campoConfig" id="confirmarContraConfig" name="incluyeCurso" placeholder=" " value="<?php echo $incluye; ?>" maxlength="255">
                                 <label for="confirmarContraConfig">Precio</label>
-                                <input type="text" class="form-control campoConfig" id="confirmarContraConfig" name="confirmarContraConfig" placeholder=" ">
+                                <input type="number" class="form-control campoConfig" id="confirmarContraConfig" name="precioCurso" placeholder=" " value="<?php echo $precio; ?>">
 
-                                <div class="separadorConfig mt-5"></div>
-                                <h1>Contenido del curso</h1>
-
-                                <div class="clasesNuevas">
-
-                                </div>
-
-                                <button class="btn btn-primary btnConfig" type="button" onclick="" id="newClass">Añadir clase</button>
-                                <br>
-                                <button class="btn btn-primary btnConfig btn-lg" type="submit">Publicar Curso</button>
-
+                                <button class="btn btn-primary btnConfig btn-lg" type="Submit" name="changes" value="changes">Aplicar Cambios</button> 
                             </form>
+
+                            <div class="separadorConfig mt-5"></div>
+                            <h1>Contenido del curso</h1>
+
+                            <div class="clasesNuevas">
+
+                            </div>
+
+                            <button class="btn btn-primary btnConfig" type="button" onclick="" id="newClass">Añadir clase</button>
+                            <br>
+                            <button class="btn btn-primary btnConfig btn-lg" type="Button">Publicar Curso</button> 
 
                         </div>
                     </div>  

@@ -75,11 +75,10 @@ class mySQLphpClass extends configSQLphp {
         return 0;
     }
 
-    function cursos($id, $nombre, $descripcion, $precio, $imagen, $usuario, $publicada, $seleccion) {
-        
+    function cursos($id, $nombre, $descripcion, $precio, $imagen, $usuario, $publicada, $incluye, $seleccion) {    
         $this->connect();
-        $sql = "call proc_dml_noticia(" . $this->varQuery($id) . ", " . $this->varQuery($nombre) . ", " . $this->varQuery($descripcion) . ", " . $this->varQuery($precio) . ", " 
-                . $this->varQuery($imagen) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($publicada) . ", " . $this->varQuery($seleccion) . ");";
+        $sql = "call proc_dml_curso(" . $this->varQuery($id) . ", " . $this->varQuery($nombre) . ", " . $this->varQuery($descripcion) . ", " . $this->varQuery($precio) . ", " 
+                . $this->varQuery($imagen) . ", " . $this->varQuery($usuario) . ", " . $this->varQuery($publicada) . ", " . $this->varQuery($incluye) . ", " . $this->varQuery($seleccion) . ");";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;
@@ -186,10 +185,10 @@ class mySQLphpClass extends configSQLphp {
         return $result2;
     }
 
-    function get_misNoticias($usuario, $orden, $estado, $codigo) {
+    function get_misCursos($codigo, $usuario) {
         $this->connect();
         
-        $sql = "call proc_misNoticias(" . $this->varQuery($usuario) . ", " . $this->varQuery($orden) . ", " . $this->varQuery($estado) . ", " . $this->varQuery($codigo) . ");";
+        $sql = "call proc_misCursos(" . $this->varQuery($codigo) . ", " . $this->varQuery($usuario) . ");";
         
         $result = $this->connectionString->query($sql);
         $this->byebye();

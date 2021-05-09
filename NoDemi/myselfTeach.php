@@ -30,6 +30,9 @@ session_start();
 
         <?php
         include "classes.php";
+        
+        $cur = new cursos();
+        
         $nav = new navbar();
         $nav->simple();
 
@@ -49,13 +52,15 @@ session_start();
                     <p class="mb-5">Ya estamos listos para aprender</p>
                 </div>
 
-                <button type="button" class="btn btn-success btn-lg p-2 px-5 my-5" onclick="redirect('crearCurso.php')">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor"
-                         xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                    </svg> Crea un nuevo Curso
-                </button>
+                <form action="crearCurso.php" method="post" enctype='multipart/form-data'>
+                    <button type="submit" class="btn btn-success btn-lg p-2 px-5 my-5" name="createNew" value="createNew">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                        </svg> Crea un nuevo Curso
+                    </button>
+                </form>
 
                 <div class="row">
                     <div class="col">
@@ -71,7 +76,7 @@ session_start();
                                data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Todos mis
                                 Cursos</a>
                             <a class="list-group-item list-group-item-action text-center" id="list-settings-list"
-                               data-toggle="list" href="#list-settings" role="tab" aria-controls="course">Mis Cursos
+                               data-toggle="list" href="#list-course" role="tab" aria-controls="course">Mis Cursos
                                 Creados</a>
                         </div>
                     </div>
@@ -105,6 +110,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="card listaCard" onclick="Redirect('preview.php')">
                                 <div class="row no-gutters">
@@ -345,29 +351,10 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="tab-pane fade show active" id="list-course" role="tabpanel"
-                             aria-labelledby="list-home-list">
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="tab-pane fade" id="list-course" role="tabpanel" aria-labelledby="list-home-list">
+                            
+                            <?php $cur->misCursos(null, $_SESSION["usuario"]); ?>
+                            
                         </div>
 
 
@@ -387,9 +374,9 @@ session_start();
                 <div class="perfil" style="color: azure;">
                     <div class="row no-gutters">
                         <div class="col">
-                            <?php 
+                            <?php
                             $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
-                            if(!empty($_SESSION["imagen"])){
+                            if (!empty($_SESSION["imagen"])) {
                                 $img = "data:image/jpg;base64," . base64_encode($_SESSION["imagen"]);
                             }
                             ?>

@@ -104,7 +104,7 @@ class category {
 
 }
 
-class noticias {
+class cursos {
 
     function enHome($cant, $opc, $categoria) {
         $conn = new mySQLphpClass();
@@ -298,18 +298,18 @@ class noticias {
     
     
 
-    function misNoticias($usuario, $orden, $estado) {
+    function misCursos($codigo, $usuario) {
         $conn = new mySQLphpClass();
-        $result = $conn->get_misNoticias($usuario, $orden, $estado, null);
+        $result = $conn->get_misCursos($codigo, $usuario);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
 
                 echo '<div class="card listaCard"><div class="row no-gutters"><div class="col-md-4">
                       <img src="data:image/jpg;base64,' . $row["imagen"] . '" class="card-img" alt="...">
-                      </div><div class="col-md-8"><div class="card-body"><h5 class="card-title">' . $row["título"] . '</h5><p class="card-text">'
-                . $row["descripción"] . '</p><div class="row no-gutters"><div class="col-10">
+                      </div><div class="col-md-8"><div class="card-body"><h5 class="card-title">' . $row["nombre"] . '</h5><p class="card-text">'
+                . $row["descripcion"] . '</p><div class="row no-gutters"><div class="col-10">
                       <p class="card-text"><small class="text-muted">Última actualización ' . $row["lastUpdate"] . '</small></p></div>
-                      <div class="col-2"><form action="preview.php" method="post" enctype="multipart/form-data" class="form-inline">
+                      <div class="col-2"><form action="crearCurso.php" method="post" enctype="multipart/form-data" class="form-inline">
                       <button type="submit" name="existent" value="' . $row["código"] . '" class="btn btn-secondary" >IR</button>
                       </form></div></div></div></div></div></div>';
             }
