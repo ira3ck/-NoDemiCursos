@@ -318,9 +318,15 @@ class cursos {
         $result = $conn->get_misCursos($codigo, $usuario);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+                
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
 
                 echo '<div class="card listaCard"><div class="row no-gutters"><div class="col-md-4">
-                      <img src="data:image/jpg;base64,' . $row["imagen"] . '" class="card-img" alt="...">
+                      <img src="' . $img . '" class="card-img" alt="...">
                       </div><div class="col-md-8"><div class="card-body"><h5 class="card-title">' . $row["nombre"] . '</h5><p class="card-text">'
                 . $row["descripcion"] . '</p><div class="row no-gutters"><div class="col-10">
                       <p class="card-text"><small class="text-muted">Última actualización ' . $row["lastUpdate"] . '</small></p></div>

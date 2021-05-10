@@ -56,7 +56,17 @@ and open the template in the editor.
             }
 
             if (array_key_exists('changes', $_POST)) {
-                $news->cursos($_SESSION["noticiaActual"], $_POST["nombreCurso"], $_POST["descCurso"], $_POST["precioCurso"], null, $_SESSION["usuario"], null, $_POST["incluyeCurso"], 'U');
+                if ((isset($_FILES['image'])) && ($_FILES['image']['tmp_name'] != '')) {
+                    $file = $_FILES['image'];
+                    $temName = $file['tmp_name'];
+                    $fp = fopen($temName, "rb");
+                    $contenido = fread($fp, filesize($temName));
+                    $imagen = addslashes($contenido);
+                    fclose($fp);
+                } else {
+                    $imagen = $_SESSION["imagen"];
+                }
+                $news->cursos($_SESSION["noticiaActual"], $_POST["nombreCurso"], $_POST["descCurso"], $_POST["precioCurso"], $imagen, $_SESSION["usuario"], null, $_POST["incluyeCurso"], 'U');
             }
 
             if (array_key_exists('publish', $_POST)) {
@@ -71,7 +81,7 @@ and open the template in the editor.
                 $nombre = $row["nombre"];
                 $desc = $row["descripcion"];
                 $precio = $row["precio"];
-                $imagen = $row["imagen"];
+                $imagen2 = $row["imagen"];
                 $incluye = $row["incluye"];
                 $publicado = $row["publicado"];
             }
@@ -166,21 +176,36 @@ and open the template in the editor.
 
                                 <h1>Datos del curso</h1>
 
-                                <label for="NombreC">Nombre del curso</label>
+                                <label for="nombreCurso">Nombre del curso</label>
                                 <input type="text" class="form-control campoConfig" id="nombreCurso" name="nombreCurso" placeholder="" value="<?php echo $nombre; ?>" maxlength="255">
 
-                                <label for="mailCofig">Descripción corta</label>
+                                <label for="descCurso">Descripción corta</label>
                                 <input type="text" class="form-control campoConfig" id="descCurso" name="descCurso" placeholder="" value="<?php echo $desc; ?>" maxlength="100">
 
-                                <label for="contraConfig">Imagen</label> <br>
-                                <input type="file"><br><br>
+                                <div class="col">    
+                                    <?php
+                                    $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+                                    if (!empty($imagen2)) {
+                                        $img = "data:image/jpg;base64," . base64_encode($imagen2);
+                                    }
+                                    ?>
+                                    <img src="<?PHP echo $img; ?>"alt="Img" class="float-left imagenUserConfig"/>
 
-                                <label for="confirmarContraConfig">Qué incluye</label>
-                                <input type="text" class="form-control campoConfig" id="confirmarContraConfig" name="incluyeCurso" placeholder=" " value="<?php echo $incluye; ?>" maxlength="255">
-                                <label for="confirmarContraConfig">Precio</label>
-                                <input type="number" class="form-control campoConfig" id="confirmarContraConfig" name="precioCurso" placeholder=" " step="any" value="<?php echo $precio; ?>">
+                                    <div class="custom-file">
 
-                                <button class="btn btn-primary btnConfig btn" type="Submit" name="changes" value="changes">Aplicar Cambios</button> 
+                                        <div class="btn btn-outline-secondary btn-rounded waves-effect float-left">
+                                            <input type="file" id="archivo" name="image"  accept="image/png,image/jpeg">
+                                        </div>
+
+                                    </div>
+                                </div><br><br>
+
+                                <label for="incluyeCurso">Qué incluye</label>
+                                <input type="text" class="form-control campoConfig" id="incluyeCurso" name="incluyeCurso" placeholder=" " value="<?php echo $incluye; ?>" maxlength="255">
+                                <label for="precioCurso">Precio</label>
+                                <input type="number" class="form-control campoConfig" id="precioCurso" name="precioCurso" placeholder=" " value="<?php echo $precio; ?>">
+
+                                <button class="btn btn-primary btnConfig btn-lg" type="Submit" name="changes" value="changes">Aplicar Cambios</button> 
                             </form>
 
                             <div class="separadorConfig mt-5"></div>
