@@ -25,7 +25,22 @@ class category {
                 }
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>';
+        }
+        $conn = null;
+    }
+    
+    function llenaElCuadro() {
+        $conn = new mySQLphpClass();
+        $result = $conn->get_secciones();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row["Activo"] == "1") {                    
+                    echo '<div class="catItem">' . $row['Nombre'] . '<div class="catID">' . $row['Clave'] . '</div></div>';
+                }
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>';
         }
         $conn = null;
     }
@@ -53,7 +68,7 @@ class category {
                         </div></div></div>";
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>';
         }
         $conn = null;
     }
@@ -78,7 +93,7 @@ class category {
                 }
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>';
         }
         $conn = null;
     }
@@ -157,7 +172,7 @@ class cursos {
                 }
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no existe ningún curso aún</div>';
         }
     }
 
@@ -204,10 +219,10 @@ class cursos {
                         <div class='col'><p class='autor'>" . $row["Nombre_Rep"] . " - " . $row["fechaPublicado"] . "</p></div></div></div></div></div></div>";
                 }
             } else {
-                echo "0 results";
+                echo '<div class="emptyMessage text-muted">No se han encontrado resultados</div>';
             }
          }else {
-                echo "0 results";
+                echo '<div class="emptyMessage text-muted">No se han encontrado resultados</div>';
             }
          
     }
@@ -252,10 +267,10 @@ class cursos {
                     "</p></div></div></div></div></div>";
                 }
             } else {
-                echo "0 results";
+                echo '<div class="emptyMessage text-muted">Sin resultados</div>';
             }
          }else {
-                echo "0 results erro";
+                echo '<div class="emptyMessage text-muted">Sin resultados</div>';
             }
          
     }
@@ -292,7 +307,7 @@ class cursos {
                         <div class='col'><p class='autor'>" . $row["Nombre_Rep"] . " - " . $row["fechaPublicado"] . "</p></div></div></div></div></div></div>";
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no hay resultados</div>';
         }
     }
     
@@ -314,7 +329,7 @@ class cursos {
                       </form></div></div></div></div></div></div>';
             }
         } else {
-            echo "0 results";
+            echo '<div class="emptyMessage text-muted">Parece que no has creado ningún curso</div>';
         }
     }
 

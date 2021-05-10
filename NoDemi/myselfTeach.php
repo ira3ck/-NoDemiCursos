@@ -26,7 +26,7 @@ session_start();
         <title>NoDemi</title>
     </head>
 
-    <body>
+    <body class="sb">
 
         <?php
         include "classes.php";
@@ -82,7 +82,7 @@ session_start();
                     </div>
                 </div>
 
-                <div class="listaNotas overflow-auto my-2">
+                <div class="listaNotas overflow-auto my-2 sb">
 
                     <div class="notaLista tab-content" id="nav-tabContent">
 
@@ -369,7 +369,7 @@ session_start();
             </div>
 
 
-            <div class="barra overflow-auto">
+            <div class="barra overflow-auto sb">
 
                 <div class="perfil" style="color: azure;">
                     <div class="row no-gutters">

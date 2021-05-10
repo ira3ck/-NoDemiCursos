@@ -1,4 +1,4 @@
-function volverseEcuela(){
+function volverseEcuela() {
     var ask = window.confirm("Seguro que quiere volverse una escuela?");
     if (ask) {
         window.alert("Su cuenta se a vuelto la de una escuela.");
@@ -6,7 +6,7 @@ function volverseEcuela(){
     }
 }
 
-function redirect(site){
+function redirect(site) {
     window.location.href = site;
 }
 
@@ -91,20 +91,18 @@ function validacionConfig() {
     }
 
     nombreConfig = document.getElementById("nombreConfig").value;
-    if (nombreConfig == null || nombreConfig.length == 0 || nombreConfig == " " ||/^\s+$/.test(nombreConfig)) {
+    if (nombreConfig == null || nombreConfig.length == 0 || nombreConfig == " " || /^\s+$/.test(nombreConfig)) {
 
-    }
-    else {
+    } else {
         if (!(/^[A-Z]+$/i.test(nombreConfig))) {
             alert("El nombre solo acepta letras");
             return false;
         }
     }
-apellidoPaConfig = document.getElementById("apellidoPaConfig").value;
+    apellidoPaConfig = document.getElementById("apellidoPaConfig").value;
     if (apellidoPaConfig == null || apellidoPaConfig.length == 0 || apellidoPaConfig == " " || /^\s+$/.test(apellidoPaConfig)) {
 
-    }
-    else {
+    } else {
         if (!(/^[A-Z]+$/i.test(apellidoPaConfig))) {
             alert("El apellido paterno solo acepta letras");
             return false;
@@ -114,8 +112,7 @@ apellidoPaConfig = document.getElementById("apellidoPaConfig").value;
     apellidoMaConfig = document.getElementById("apellidoMaConfig").value;
     if (apellidoMaConfig == null || apellidoMaConfig.length == 0 || apellidoMaConfig == " " || /^\s+$/.test(apellidoMaConfig)) {
 
-    }
-    else {
+    } else {
         if (!(/^[A-Z]+$/i.test(apellidoMaConfig))) {
             alert("El apellido materno solo acepta letras");
             return false;
@@ -131,7 +128,7 @@ apellidoPaConfig = document.getElementById("apellidoPaConfig").value;
     alert("los datos se an actualizado");
 
 }
-function BajaUsuariro(){
+function BajaUsuariro() {
     var ask = window.confirm("Seguro que quiere dar de baja su cuenta?");
     if (ask) {
         window.alert("Su cuenta a sido dada de baja.");

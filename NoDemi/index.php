@@ -25,7 +25,7 @@ session_start();
         <title>NoDemi</title>
     </head>
 
-    <body>
+    <body class="sb">
         <?php
         include "classes.php";
         $nav = new navbar();
@@ -186,7 +186,7 @@ session_start();
 
                 <div class="row text-center">
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -199,7 +199,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -212,7 +212,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -225,7 +225,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -238,7 +238,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -251,7 +251,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -264,7 +264,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -277,7 +277,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -310,7 +310,7 @@ session_start();
 
                 <div class="row text-center">
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -323,7 +323,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -336,7 +336,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -349,7 +349,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -370,7 +370,7 @@ session_start();
 
                 <div class="row text-center">
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -383,7 +383,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -396,7 +396,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -409,7 +409,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -422,7 +422,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -435,7 +435,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -448,7 +448,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -461,7 +461,7 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.html')">
+                        <div class="tarjeta" onclick="redirect('curso.php')">
                             <img src="img/banner.png" alt="">
                             <div class="tarjetaCont">
                                 <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
@@ -478,7 +478,7 @@ session_start();
             </div>
 
 
-            <div class="barra overflow-auto">
+            <div class="barra overflow-auto sb">
                 <div class="separador">CATEGORÍAS</div>
                 <?php
                 $barra = new category();
