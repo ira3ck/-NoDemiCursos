@@ -30,6 +30,10 @@ session_start();
 
         <?php
         
+        if($_SESSION["privilegio"]=='Maestro'){
+            header('Location: myselfTeach.php');
+        }
+        
         include "classes.php";
         $nav = new navbar();
         $nav->simple();

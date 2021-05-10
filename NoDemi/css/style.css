@@ -558,6 +558,9 @@ body {
 .tarjetaCont{
     padding: 0.5rem;
 }
+.tarjetaCont>p{
+    font-size: large
+}
 .detPrice{
     position: absolute;
     bottom: 0.5rem;
@@ -832,6 +835,49 @@ input[type="radio"]:checked ~ #estrella {
     font-size: larger;
     margin: 20px;
     margin-right: 10px;
+}
+
+
+.catContEx{
+    width: 45vw;
+    min-width: 400px;
+    padding: 0.5rem;
+    user-select: none;
+}
+.catItemEx{
+    background-color: #f0eff2;
+    font-size: small;
+    width: fit-content;
+    display: inline-block;
+    padding: 1.5px 10px 3px 10px;
+    margin-bottom: -15px;
+    border-radius: 15px;
+    user-select: none;
+
+}
+.textCat{
+    display: inline-block;
+    margin-left: 5px;
+}
+.catQuitar{
+    display: inline-block;
+    font-size: medium;
+    color: #cbc9d1;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+.catQuitar:hover{
+    color: #817d89;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+.catQuitar:active{
+    border: none;
+    outline: none;
+    padding: 0;
 }
 
 .tarjeta .tarjetaImg{

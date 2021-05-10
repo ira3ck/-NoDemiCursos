@@ -29,6 +29,11 @@ session_start();
     <body class="sb">
 
         <?php
+        
+        if($_SESSION["privilegio"]=='Alumno'){
+            header('Location: myself.php');
+        }
+        
         include "classes.php";
         
         $cur = new cursos();

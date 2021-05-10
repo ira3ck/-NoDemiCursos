@@ -34,6 +34,7 @@ and open the template in the editor.
         $nav = new navbar();
         $nav->simple();
         $news = new mySQLphpClass();
+        $cat = new category();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -53,6 +54,10 @@ and open the template in the editor.
 
             if (array_key_exists('addTextCat', $_POST)) {
                 $news->seccionXcurso($_SESSION['noticiaActual'], $_POST['categoria'], null, 'I');
+            }
+
+            if (array_key_exists('catBorrar', $_POST)) {
+                $str = $news->seccionXcurso(null, null, $_POST['quitaCategoria'], 'D');
             }
 
             if (array_key_exists('changes', $_POST)) {
@@ -136,9 +141,13 @@ and open the template in the editor.
                     $('.catText').text(res);
                 });
 
+                $('.catContEx').on("click", ".catQuitar", function () {
+                    claveFinal = $(this).siblings('.catID').text().toString();
+                    $('.catContEx').append('<input type="text" name="quitaCategoria" value="' + claveFinal + '">');
+                });
+
                 $('#addTextCat').click(function () {
                     $('.catText').text('');
-                    debugger;
                     $('.catText').append('<input type="text" name="categoria" value="' + claveFinal + '">');
                 });
             });
@@ -151,18 +160,26 @@ and open the template in the editor.
 
                     <div class="row">
                         <div>
-                            <form action="crearCurso.php" method="post" enctype='multipart/form-data'>
-                                <h3>Categoría del curso</h3>
-                                <div class="catText">
+                            <h3>Categorías del curso</h3>
 
+                            <form action="crearCurso.php" method="post" enctype='multipart/form-data'>
+                                <div class="catContEx">
+                                    <?php
+                                    $cat->seccionesDeCurso($_SESSION["noticiaActual"]);
+                                    ?>
+                                </div>
+                            </form>
+
+                            <form action="crearCurso.php" method="post" enctype='multipart/form-data'>
+                                <div class="catText">
+                                    <span class="text-muted">Selecciona una categoría para agregar</span>
                                 </div>
                                 <div class="catContainer sb my-2">
                                     <?php
-                                    $cat = new category();
                                     $cat->llenaElCuadro();
                                     ?>
                                 </div>
-                                <button class="btn btn-primary" type="submit" id="addTextCat" name="addTextCat">Usar esta categoría</button>
+                                <button class="btn btn-primary" type="submit" id="addTextCat" name="addTextCat">Añadir esta categoría</button>
                             </form>
                             <button class="btn btn-link" type="button" id=""  data-toggle="modal" data-target="#newCatModal">
                                 La categoría que busco no se encuentra en la lista
@@ -203,7 +220,7 @@ and open the template in the editor.
                                 <label for="incluyeCurso">Qué incluye</label>
                                 <input type="text" class="form-control campoConfig" id="incluyeCurso" name="incluyeCurso" placeholder=" " value="<?php echo $incluye; ?>" maxlength="255">
                                 <label for="precioCurso">Precio</label>
-                                <input type="number" class="form-control campoConfig" id="precioCurso" name="precioCurso" placeholder=" " value="<?php echo $precio; ?>">
+                                <input type="number" class="form-control campoConfig" id="precioCurso" name="precioCurso" placeholder=" " value="<?php echo $precio; ?>" step="any">
 
                                 <button class="btn btn-primary btnConfig btn-lg" type="Submit" name="changes" value="changes">Aplicar Cambios</button> 
                             </form>

@@ -57,6 +57,14 @@ class mySQLphpClass extends configSQLphp {
         }
         return $string;
     }
+    
+    function randCategoria($cant, $activo){
+        $this->connect();
+        $sql = "call proc_randCategory(" . $this->varQuery($cant) . ", " . $this->varQuery($activo) . ");";
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
 
     function usuarios($nombre, $paterno, $materno, $correo, $usuario, $contraseña, $imagen, $genero, $nacimiento, $privilegio, $newUser, $eliminado, $seleccion) {
         $this->connect();
@@ -89,6 +97,14 @@ class mySQLphpClass extends configSQLphp {
         $this->connectionString->query($sql);
         $this->byebye();
         return $sql;
+    }
+    
+    function seccionDeCurso($curso) {
+        $this->connect();
+        $sql = "call proc_get_categoriasDeCurso(" . $this->varQuery($curso) . ");";
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
     }
 
     function comentarios($clave, $texto, $fecha, $responde, $noticia, $usuario, $seleccion) {
@@ -131,13 +147,17 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
     }
 
-    function get_noticias($cant) {
+    function get_cursos($categoria, $cant) {
         $this->connect();
-        if ($cant == null) {
-            $sql = "call proc_noticias(null);";
-        } else {
-            $sql = "call proc_noticias(" . $cant . ");";
-        }
+        $sql = "call proc_cursos(" . $this->varQuery($categoria) . ", " . $this->varQuery($cant) . ");";
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function get_curso_unique($codigo) {
+        $this->connect();
+        $sql = "call proc_curso_unique(" . $this->varQuery($codigo) . ");";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;

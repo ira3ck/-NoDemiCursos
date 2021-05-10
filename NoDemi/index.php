@@ -33,6 +33,12 @@ session_start();
         $regis = false;
         $mal = 0;
 
+        $barra = new category();
+        $cur = new cursos();
+
+        $catArr = $barra->randCategory('3', '1');
+
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["salir"])) {
                 session_unset();
@@ -181,114 +187,13 @@ session_start();
 
 
                 <div class="separador mt-5">
-                    <h3 class="mb-5">Programación</h3>
+                    <h3 class="mb-5"><?php echo $catArr[0]['nombre']; ?></h3>
                 </div>
 
                 <div class="row text-center">
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php
+                    $cur->enHome('8', $catArr[0]['clave']);
+                    ?>
                 </div>
 
                 <div class="jumbotron mt-5" style="background-color: #c8b7d1;">
@@ -305,173 +210,28 @@ session_start();
 
 
                 <div class="separador mt-5">
-                    <h3 class="mb-5">Artes</h3>
+                    <h3 class="mb-5"><?php echo $catArr[1]['nombre']; ?></h3>
                 </div>
 
                 <div class="row text-center">
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $cur->enHome('4', $catArr[1]['clave']);
+                    ?>
 
                 </div>
 
 
                 <div class="separador mt-5">
-                    <h3 class="mb-5">Ciencia</h3>
+                    <h3 class="mb-5"><?php echo $catArr[2]['nombre']; ?></h3>
                 </div>
 
                 <div class="row text-center">
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $cur->enHome('8', $catArr[2]['clave']);
+                    ?>
 
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta" onclick="redirect('curso.php')">
-                            <img src="img/banner.png" alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
 
@@ -481,7 +241,6 @@ session_start();
             <div class="barra overflow-auto sb">
                 <div class="separador">CATEGORÍAS</div>
                 <?php
-                $barra = new category();
                 $barra->llenaLaBarra();
                 ?>
             </div>

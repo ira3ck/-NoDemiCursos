@@ -34,6 +34,48 @@ and open the template in the editor.
         include "classes.php";
         $nav = new navbar();
         $nav->simple();
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if (isset($_POST["pagar"])) {
+                echo '<script type="text/javascript">
+                     alert("Compra exitosa");
+                     </script>';
+                header('Location: index.php');
+            }
+            
+            if (isset($_POST["buy"])) {
+                $codigo = $_POST["buy"];
+                $cur = new mySQLphpClass();
+                $result = $cur->get_curso_unique($codigo);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $codigo = $row["código"];
+                    $nombre = $row["nombre"];
+                    $desc = $row["descripcion"];
+                    $precio = $row["precio"];
+                    $imagen = $row["imagen"];
+                    $img_str = 'img/banner.jpg';
+                    if(!empty($imagen)){
+                        $img_str = 'data:image/jpg;base64,' . base64_encode($imagen);
+                    }
+                    $incluye = $row["incluye"];
+                    $lastUpdate = $row["lastUpdate"];
+                    $tName = $row["nombreUser"] . ' ' . $row["apellidoUser"];
+                    $userIMG = $row["userIMG"];
+                    $img_str2 = 'https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240';
+                    if(!empty($userIMG)){
+                        $img_str2 = 'data:image/jpg;base64,' . base64_encode($userIMG);
+                    }
+                    $publicado = $row["publicado"];
+                    if ($publicado != 1) {
+                        $byebye = true;
+                    }
+                } else {
+                    $byebye = true;
+                }
+            }
+        }
 
         if (isset($_SESSION["usuario"])) {
             $nav->yesSession($_SESSION["usuario"], $_SESSION["privilegio"], $_SESSION["imagen"]);
@@ -50,37 +92,37 @@ and open the template in the editor.
 
                 <div class="row">
 
-                    <div class="col">
+                    <div class="col mt-5">
                         
                         <div class="row">
                             <h2>Resumen de la compra</h2>
                         </div>
                         <div class="row">
-                            El curso: Cómo tener éxito en la vida
+                            El curso: <?php echo $nombre; ?>
                         </div>
                         <div class="row">
                             
                         </div>
                         <div class="row">
                             <form action="curso.php" method="POST" enctype="multipart/form-data">
-                                <button class="btn btn-primary btnConfig" type="submit" value="pagar" name="pagar">Pagar</button>
+                                <button class="btn btn-primary btnConfig" type="submit" value="<?php echo $codigo; ?>" name="pagar">Pagar</button>
                             </form>
                         </div>
                         
                     </div>
 
-                    <div class="col-4" style="background-color: #e9e9e9">
+                    <div class="col-4 pb-5" style="background-color: #e9e9e9">
                         <div class="row justify-content-center p-5">
-                            <img src="img/card.png" alt="" style="width: 100%; height: auto; border-radius: 20px; margin-top: 3rem;">
+                            <img src="<?php echo $img_str; ?>" alt="" style="width: 100%; height: auto; border-radius: 20px; margin-top: 3rem;">
                         </div>
                         <div class="row justify-content-center p-3">
-                            <h3 class="text-center">Cómo tener éxito en la vida</h3> 
+                            <h3 class="text-center"><?php echo $nombre; ?></h3> 
                         </div>
                         <div class="row justify-content-center">
-                            por ira3ck
+                            por <?php echo $tName; ?>
                         </div>
-                        <div class="row justify-content-center p-3">
-                            <h4>1599.99</h4>
+                        <div class="row justify-content-center p-3 mb-5">
+                            <h4 class="mb-5"><?php echo $precio; ?></h4>
                         </div>
                     </div>
 

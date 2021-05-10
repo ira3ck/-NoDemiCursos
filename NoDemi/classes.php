@@ -29,18 +29,33 @@ class category {
         }
         $conn = null;
     }
-    
+
     function llenaElCuadro() {
         $conn = new mySQLphpClass();
         $result = $conn->get_secciones();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                if ($row["Activo"] == "1") {                    
+                if ($row["Activo"] == "1") {
                     echo '<div class="catItem">' . $row['Nombre'] . '<div class="catID">' . $row['Clave'] . '</div></div>';
                 }
             }
         } else {
             echo '<div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>';
+        }
+        $conn = null;
+    }
+
+    function seccionesDeCurso($curso) {
+        $conn = new mySQLphpClass();
+        $result = $conn->seccionDeCurso($curso);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row["Activo"] == "1") {
+                    echo '<div class="catItemEx"><button class="catQuitar" type="submit" name="catBorrar">&times;</button><div class="textCat">' . $row["Nombre"] . '</div><div class="catID">' . $row["Clave"] . '</div></div>';
+                }
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Tu curso no cuenta con ninguna categoría</div>';
         }
         $conn = null;
     }
@@ -117,59 +132,47 @@ class category {
         $conn = null;
     }
 
+    function randCategory($cant, $activo) {
+        $conn = new mySQLphpClass();
+        $result = $conn->randCategoria($cant, $activo);
+        $arr = Array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($arr, $row);
+            }
+        } else {
+            $arr = null;
+        }
+        $conn = null;
+        return $arr;
+    }
+
 }
 
 class cursos {
 
-    function enHome($cant, $opc, $categoria) {
+    function enHome($cant, $categoria) {
         $conn = new mySQLphpClass();
-        $result = $conn->get_noticias($cant);
-        $img = '#';
+        $result = $conn->get_cursos($categoria, $cant);
+        $img_str = '#';
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 if (array_key_exists('imagen', $row)) {
                     $img = $row["imagen"];
-                }
-                if ($opc == "T") {
-                    $piece = "'noticia.php?new=" . $row["Código"] . "';";
-                    $redirect = '"window.location = ' . $piece . '"';
-                    $now = time();
-                    $target = strtotime($row["fechaPublicado"]);
-                    $diff = $now - $target;
-                    echo "<div class='nota' onclick=" . $redirect . ">";
-                    if ($diff <= 68417) {
-                        echo "<div class='flash'>¡ÚLTIMO MOMENTO!</div>";
-                    }
-                    echo "<div class='row no-gutters'>
-                          <div class='col-12'><h2>" . $row["Título"] . "</h2></div></div>
-                          <div class='row no-gutters'><div class='col-lg-5'>
-                          <img src='data:image/jpg;base64," . $img . "' class='notaIMG' alt='...'>
-                          </div><div class='col-lg-7 p-2'><div class='row no-gutters' style='height: 90%;'>
-                          <p>" . $row["Descripción"] . "</p></div><div class='row no-gutters'>
-                          <div class='col'><p class='autor'>" . $row["Nombre_Rep"] . " - " . $row["fechaPublicado"] .
-                    "</p></div></div></div></div></div>";
-                }
-                if ($opc == "C") {
-                    if ($categoria == $row["SecciónFK"]) {
-                        $piece = "'noticia.php?new=" . $row["Código"] . "';";
-                        $redirect = '"window.location = ' . $piece . '"';
-                        $now = time();
-                        $target = strtotime($row["fechaPublicado"]);
-                        $diff = $now - $target;
-                        echo "<div class='nota' onclick=" . $redirect . ">";
-                        if ($diff <= 68417) {
-                            echo "<div class='flash'>¡ÚLTIMO MOMENTO!</div>";
-                        }
-                        echo "<div class='row no-gutters'>
-                                  <div class='col-12'><h2>" . $row["Título"] . "</h2></div></div>
-                                  <div class='row no-gutters'><div class='col-lg-5'>
-                                  <img src='data:image/jpg;base64," . $img . "' class='notaIMG' alt='...'>
-                                  </div><div class='col-lg-7 p-2'><div class='row no-gutters' style='height: 90%;'>
-                                  <p>" . $row["Descripción"] . "</p></div><div class='row no-gutters'>
-                                  <div class='col'><p class='autor'>" . $row["Nombre_Rep"] . " - " . $row["fechaPublicado"] .
-                        "</p></div></div></div></div></div>";
+                    if (empty($img)) {
+                        $img_str = 'img/banner.png';
+                    } else {
+                        $img_str = 'data:image/jpg;base64,' . base64_encode($img);
                     }
                 }
+                $username = $row["nombreUser"] . ' ' . $row["apellidoUser"];
+                $piece = "'curso.php?cur=" . $row["código"] . "';";
+                $redirect = '"window.location = ' . $piece . '"';
+                echo '<div class="col"><div class="tarjeta" onclick=' . $redirect . '>
+                      <img src="' . $img_str . '" alt="">
+                      <div class="tarjetaCont"><p>' . $row["nombre"] . '</p>
+                      <div class="detPrice"><small class="text-muted">' . $username . '</small><br>
+                      <strong class="ml-3">' . $row["precio"] . 'MXN</strong></div></div></div></div>';
             }
         } else {
             echo '<div class="emptyMessage text-muted">Parece que no existe ningún curso aún</div>';
@@ -188,12 +191,12 @@ class cursos {
         else
             $fin = date('Y-m-d H:i:s', strtotime("$fin $timefin"));
         $conn = new mySQLphpClass();
-         $ind = 0;
+        $ind = 0;
         $result = $conn->get_noticiasBusqueda($buscar, $inicio, $fin, $cant);
         $img = '#';
-        if($result){
+        if ($result) {
             if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     $piece = "'noticia.php?new=" . $row["Código"] . "';";
                     $redirect = '"window.location = ' . $piece . '"';
                     $now = time();
@@ -221,10 +224,9 @@ class cursos {
             } else {
                 echo '<div class="emptyMessage text-muted">No se han encontrado resultados</div>';
             }
-         }else {
-                echo '<div class="emptyMessage text-muted">No se han encontrado resultados</div>';
-            }
-         
+        } else {
+            echo '<div class="emptyMessage text-muted">No se han encontrado resultados</div>';
+        }
     }
     
     function buscar2($buscar, $inicio, $fin, $fecha, $titulo, $dificultad, $precio) {
@@ -245,7 +247,7 @@ class cursos {
         $conn = new mySQLphpClass();
         $result = $conn->get_noticiasBusqueda2($buscar, $inicio, $fin, $fecha, $titulo, $precio, $dif);
         $img = '#';
-        if($result){
+        if ($result) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
@@ -272,10 +274,9 @@ class cursos {
             } else {
                 echo '<div class="emptyMessage text-muted">Sin resultados</div>';
             }
-         }else {
-                echo '<div class="emptyMessage text-muted">Sin resultados</div>';
-            }
-         
+        } else {
+            echo '<div class="emptyMessage text-muted">Sin resultados</div>';
+        }
     }
 
     function Vistas($cant) {
@@ -313,8 +314,6 @@ class cursos {
             echo '<div class="emptyMessage text-muted">Parece que no hay resultados</div>';
         }
     }
-    
-    
 
     function misCursos($codigo, $usuario) {
         $conn = new mySQLphpClass();
@@ -322,7 +321,7 @@ class cursos {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
-                
+
                 $img_str = base64_encode($row["imagen"]);
                 if (!empty($row["imagen"])) {
                     $img = "data:image/jpg;base64," . $img_str;
@@ -457,7 +456,7 @@ class inicioRegistro {
 
     function registro($correo, $usuario, $contraseña) {
         $conn = new mySQLphpClass();
-        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Alumno', null, '0' ,'I');
+        $result = $conn->usuarios(null, null, null, $correo, $usuario, $contraseña, null, null, null, 'Alumno', null, '0', 'I');
         return $result;
     }
 

@@ -71,6 +71,38 @@ and open the template in the editor.
                 visibility: hidden;
                 height: 0;
             }
+            
+            .catContEx{
+                width: 45vw;
+                min-width: 400px;
+                padding: 0.5rem;
+                user-select: none;
+            }
+            .catItemEx{
+                background-color: #f0eff2;
+                font-size: small;
+                width: fit-content;
+                display: inline-block;
+                padding: 1.5px 10px 3px 10px;
+                margin-bottom: -15px;
+                border-radius: 15px;
+                user-select: none;
+                
+            }
+            .textCat{
+                display: inline-block;
+                margin-left: 5px;
+            }
+            .catQuitar{
+                display: inline-block;
+                font-size: medium;
+                color: #cbc9d1;
+                cursor: pointer;
+            }
+            .catQuitar:hover{
+                color: #817d89;
+            }
+            
         </style>
         <script>
 
@@ -92,9 +124,168 @@ and open the template in the editor.
         <div class="container">
             <div class="row">
                 <div>
-                    <h3>Categoría del curso</h3>
+                    <h3>Categorías del curso</h3>
+                    
+                    <div class="catContEx">
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                        <div class="catItemEx">
+                            <div class="catQuitar">&times;</div>
+                            <div class="textCat">Categoría #1</div>
+                            <div class="catID">1</div>
+                        </div>
+                    </div>
+                    
                     <div class="catText">
-
+                        <span class="text-muted">Selecciona una categoría para agregar</span>
                     </div>
                     <div class="catContainer sb my-2">
                         <div class="emptyMessage text-muted">Parece que no existe ninguna categoría</div>
@@ -138,7 +329,7 @@ and open the template in the editor.
                             <div class="catID">1</div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="button" id="">Usar esta categoría</button>
+                    <button class="btn btn-primary" type="button" id="">Añadir esta categoría</button>
                     <button class="btn btn-link" type="button" id=""  data-toggle="modal" data-target="#newCatModal">
                         La categoría que busco no se encuentra en la lista
                     </button>

@@ -34,6 +34,7 @@ and open the template in the editor.
         include "classes.php";
         $nav = new navbar();
         $nav->simple();
+        $byebye = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -41,7 +42,47 @@ and open the template in the editor.
                 echo '<script type="text/javascript">
                      alert("Compra exitosa");
                      </script>';
+                header('Location: index.php');
             }
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+            if (isset($_GET["cur"])) {
+                $codigo = $_GET["cur"];
+                $cur = new mySQLphpClass();
+                $result = $cur->get_curso_unique($codigo);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $codigo = $row["código"];
+                    $nombre = $row["nombre"];
+                    $desc = $row["descripcion"];
+                    $precio = $row["precio"];
+                    $imagen = $row["imagen"];
+                    $img_str = 'img/banner.jpg';
+                    if(!empty($imagen)){
+                        $img_str = 'data:image/jpg;base64,' . base64_encode($imagen);
+                    }
+                    $incluye = $row["incluye"];
+                    $lastUpdate = $row["lastUpdate"];
+                    $tName = $row["nombreUser"] . ' ' . $row["apellidoUser"];
+                    $userIMG = $row["userIMG"];
+                    $img_str2 = 'https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240';
+                    if(!empty($userIMG)){
+                        $img_str2 = 'data:image/jpg;base64,' . base64_encode($userIMG);
+                    }
+                    $publicado = $row["publicado"];
+                    if ($publicado != 1) {
+                        $byebye = true;
+                    }
+                } else {
+                    $byebye = true;
+                }
+            }
+        }
+        
+        if ($byebye) {
+            header('Location: index.php');
         }
 
         if (isset($_SESSION["usuario"])) {
@@ -62,35 +103,26 @@ and open the template in the editor.
                     <div class="row py-3">
                         <div class="col">
                             <div class="jumbotron" style="background: #e1cce5">
-                                <h1>Aprende pintura clasica</h1>
-                                <h4>curso basico ene spañol para aprender a lo basico sobre pintura clasica tanto para su
-                                    apreciacion como para
-                                    su replicacion.
-                                </h4>
+                                <h1><?php echo $nombre; ?></h1>
                                 <br>
                                 <h6>
-                                    ultima modificacion el 20 de octubre, 2020.
+                                    Última modificación: <?php echo $lastUpdate; ?>.
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <div class="row py-3 ">
 
-                        <img src="https://cdn.discordapp.com/attachments/401063050464985091/820201212220538909/unknown.png"
-                             class="img-centro" alt="">
+                        <img src="<?php echo $img_str; ?>" alt="" style="width: 100%; height: auto;" class="mb-5">
 
                         <div class="col-8">
-                            <h4>incluye</h4>
-                            <ul>
-                                <li>2.5 horas de video</li>
-                                <li>imagenes de referencia</li>
-                                <li>archivos sobre la historia del arte</li>
-                            </ul>
+                            <h4>Incluye</h4>
+                            <p><?php echo $incluye; ?></p>
                         </div>
                         <div class="col-4">
-                            <h1>MX$ 129</h1>
+                            <h1>MXN$ <?php echo $precio; ?></h1>
                             <form action="compra.php" method="POST" enctype="multipart/form-data">
-                                <button class="btn btn-primary btnConfig" type="submit" >Comprar</button>
+                                <button class="btn btn-primary btnConfig" type="submit" name="buy" value="<?php echo $codigo; ?>">Comprar</button>
                             </form>
                         </div>
                     </div>
@@ -101,13 +133,8 @@ and open the template in the editor.
                         </ul>
                     </div>
                     <div>
-                        <h1>Datos del curso</h1>
-                        <p>se enseña sobre las corrientes artisiticas de manera que cualquiera pueda entenderlas ademas de
-                            interesarse en ellas.
-                            estas corrientes se ensellan con ejemplos basicos que cualquierea pueda entender asi que no es
-                            necesario tener algun
-                            tipo de experiencia para el entendimiento de este curso
-                        </p>
+                        <h1>Descripción</h1>
+                        <p><?php echo $desc; ?></p>
                     </div>
 
                     <h3>Contenido</h3>
@@ -164,22 +191,15 @@ and open the template in the editor.
 
 
                 </div>
-                <div class="row">
-                    <div class="col text-muted" align="right"><small>
-                            Publicado el 20 de octubre, 2020.
-                        </small></div>
-                </div>
                 <div class="row py-3">
                     <div class="col">
                         <div class="autor">
                             <div class="row no-gutters">
                                 <div class="col-3">
-                                    <img src="https://pbs.twimg.com/media/EvCIqXeUUAAwwda?format=jpg&name=large"
+                                    <img src="<?php echo $img_str2; ?>"
                                          alt="Avatar">
                                 </div>
-                                <div class="col-9 text-center m-auto text-wrap">
-                                    Irack Francisco Alanís Irigoyen
-                                </div>
+                                <div class="col-9 text-center m-auto text-wrap"><?php echo $tName; ?></div>
                             </div>
 
                         </div>
@@ -187,11 +207,6 @@ and open the template in the editor.
                             <h2 class="child">calificacion: 5.0</h2>
                             <input id="radio10" class="child" type="radio" name="estrellas" value="50">
                             <label id="estrella" for="radio1">★</label>
-                        </div>
-                        <div>
-                            Maestro en una gran variedad de escuelas y credor de contenido en mas de una plataforma. asi
-                            mismo tambien a coloaborado en mas de un producto
-                            digital, creador de la famosa pintura conocida como la sonrisa o el mono liso
                         </div>
                     </div>
                 </div>
@@ -254,7 +269,7 @@ and open the template in the editor.
                 <div class="separador"></div>
                 <!--SECCIÓN DE COMENTARIOS-->
                 <div class="col">
-                    Calificacion del curso.
+                    Calificación del curso.
                 </div>
                 <form>
 
@@ -319,10 +334,10 @@ and open the template in the editor.
             <!--BARRA (INICIO)-->
             <div class="barra overflow-auto sb">
                 <div class="separador">CATEGORÍAS</div>
-                <?php
-                $barra = new category();
-                $barra->llenaLaBarra();
-                ?>
+<?php
+$barra = new category();
+$barra->llenaLaBarra();
+?>
             </div>
             <!--BARRA (FIN)-->
         </div>
