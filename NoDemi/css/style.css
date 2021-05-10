@@ -675,7 +675,6 @@ input[type = "radio"]{ display:none;}
     unicode-bidi: bidi-override;
 }
 label:hover{color:orange;}
-label:hover ~ label{color:orange;}
 input[type = "radio"]:checked ~ label{color:orange;}
 #form {
     width: 50px;
@@ -833,4 +832,9 @@ input[type="radio"]:checked ~ #estrella {
     font-size: larger;
     margin: 20px;
     margin-right: 10px;
+}
+
+.tarjeta .tarjetaImg{
+    width: 50%;
+    height: auto;
 }

@@ -227,10 +227,10 @@ class cursos {
          
     }
     
-    function buscar2($buscar, $inicio, $fin, $fecha, $titulo, $palabra) {
+    function buscar2($buscar, $inicio, $fin, $fecha, $titulo, $dificultad, $precio) {
         $timeinicio = "00:00:00";
         $timefin = "23:59:59";
-        if ($inicio == null)
+        if (($inicio == null) || ($fecha == 0))
             $inicio = "1900-01-01";
         else
             $inicio = date('Y-m-d H:i:s', strtotime("$inicio $timeinicio"));
@@ -238,33 +238,36 @@ class cursos {
             $fin = date("Y-m-d H:i:s");
         else
             $fin = date('Y-m-d H:i:s', strtotime("$fin $timefin"));
+        $dif = "0";
+        if($dificultad == 1) $dif = "Novato";
+        if($dificultad == 2) $dif = "Medio";
+        if($dificultad == 3) $dif = "Experto";
         $conn = new mySQLphpClass();
-        $result = $conn->get_noticiasBusqueda2($buscar, $inicio, $fin, $fecha, $titulo, $palabra);
+        $result = $conn->get_noticiasBusqueda2($buscar, $inicio, $fin, $fecha, $titulo, $precio, $dif);
         $img = '#';
         if($result){
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    if (array_key_exists('imagen', $row)) {
-                        $img = $row["imagen"];
+                    $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+
+                    $img_str = base64_encode($row["imagen"]);
+                    if (!empty($row["imagen"])) {
+                        $img = "data:image/jpg;base64," . $img_str;
                     }
 
-                    $piece = "'noticia.php?new=" . $row["Código"] . "';";
+                    $piece = "'noticia.php?new=" . $row["curso_id"] . "';";
                     $redirect = '"window.location = ' . $piece . '"';
-                    $now = time();
-                    $target = strtotime($row["fechaPublicado"]);
-                    $diff = $now - $target;
-                    echo "<div class='nota' onclick=" . $redirect . ">";
-                    if ($diff <= 68417) {
-                        echo "<div class='flash'>¡ÚLTIMO MOMENTO!</div>";
-                    }
-                    echo "<div class='row no-gutters'>
-                              <div class='col-12'><h2>" . $row["Título"] . "</h2></div></div>
-                              <div class='row no-gutters'><div class='col-lg-5'>
-                              <img src='data:image/jpg;base64," . $img . "' class='notaIMG' alt='...'>
-                              </div><div class='col-lg-7 p-2'><div class='row no-gutters' style='height: 90%;'>
-                              <p>" . $row["Descripción"] . "</p></div><div class='row no-gutters'>
-                              <div class='col'><p class='autor'>" . $row["Nombre_Rep"] . " - " . $row["fechaPublicado"] .
-                    "</p></div></div></div></div></div>";
+                    echo "<div class='col'>
+                        <div class='tarjeta' onclick=' . $redirect . '>
+                            <img class = 'tarjetaImg pt-2' src=" . $img . " alt=''>
+                                <p>". $row["nombre"] . "</p>
+                            <div class='tarjetaCont'>
+                                <p>". $row["descripcion"] . "</p>
+                                <div class='detPrice'>
+                                    <small class='text-muted'>". $row["usuario_fk"] . "</small><br>
+                                    <strong class='ml-3'>". $row["precio"] . " MXN</strong>
+                                </div>
+                            </div></div></div>";
                 }
             } else {
                 echo '<div class="emptyMessage text-muted">Sin resultados</div>';

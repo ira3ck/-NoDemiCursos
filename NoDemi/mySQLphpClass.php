@@ -155,9 +155,9 @@ class mySQLphpClass extends configSQLphp {
         return $result;
     }
 
-    function get_noticiasBusqueda2($buscar, $inicio, $fin, $fecha, $titulo, $palabra) {
+    function get_noticiasBusqueda2($buscar, $inicio, $fin, $fecha, $titulo, $precio, $dificultad) {
         $this->connect();
-        $sql = "call proc_busquedaAvanzada(' $buscar ','  $inicio  ',' $fin '," . $fecha . "," . $titulo . "," . $palabra . ");";
+        $sql = "call proc_busquedaAvanzada(' $buscar ','  $inicio  ',' $fin '," . $fecha . "," . $titulo . "," . $precio . ",'" . "$dificultad" . "');";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;
@@ -184,7 +184,7 @@ class mySQLphpClass extends configSQLphp {
             while ($row = $result->fetch_assoc()) {
 
                 $result2 = array($row["nombre"], $row["apellidoPaterno"], $row["apellidoMaterno"], $row["correo"],
-                    $row["usuario"], $row["contraseña"], $row["imagen"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"], $row["eliminado"],);
+                    $row["usuario"], $row["contraseña"], $row["imagen"], $row["genero"], $row["fecha_nacimiento"], $row["privilegio"]);
             }
         } else {
             $result2 = null;
