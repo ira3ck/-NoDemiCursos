@@ -680,12 +680,12 @@ class preview {
 
 }
 
-class archivos {
+class clases {
 
     private $codigo;
     private $arr;
 
-    function archivos($code) {
+    function clases($code) {
         $this->codigo = $code;
         $this->arr = array();
     }

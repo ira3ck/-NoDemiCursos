@@ -57,8 +57,8 @@ class mySQLphpClass extends configSQLphp {
         }
         return $string;
     }
-    
-    function randCategoria($cant, $activo){
+
+    function randCategoria($cant, $activo) {
         $this->connect();
         $sql = "call proc_randCategory(" . $this->varQuery($cant) . ", " . $this->varQuery($activo) . ");";
         $result = $this->connectionString->query($sql);
@@ -90,7 +90,7 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
         return $result;
     }
-    
+
     function seccionXcurso($curso, $categoria, $clave, $seleccion) {
         $this->connect();
         $sql = "call proc_dml_categoriaXcurso(" . $this->varQuery($curso) . ", " . $this->varQuery($categoria) . ", " . $this->varQuery($clave) . ", " . $this->varQuery($seleccion) . ");";
@@ -98,7 +98,7 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
         return $sql;
     }
-    
+
     function seccionDeCurso($curso) {
         $this->connect();
         $sql = "call proc_get_categoriasDeCurso(" . $this->varQuery($curso) . ");";
@@ -116,12 +116,12 @@ class mySQLphpClass extends configSQLphp {
         return 0;
     }
 
-    function archivos($tipo, $seleccion, $noticia, $orden, $clave, $imagen, $video, $texto, $tamaño) {
+    function clases($clase, $titulo, $descripcion, $calificacion, $curso, $seleccion) {
         $this->connect();
-        $sql = "call proc_dml_archivos({$this->varQuery($tipo)}, {$this->varQuery($seleccion)}, {$this->varQuery($noticia)}, {$this->varQuery($orden)}, {$this->varQuery($clave)}, {$this->varQuery($imagen)}, {$this->varQuery($video)},  {$this->varQuery($texto)} , {$this->varQuery($tamaño)});";
-        $this->connectionString->query($sql);
+        $sql = "call proc_dml_nivel({$this->varQuery($clase)}, {$this->varQuery($titulo)}, {$this->varQuery($descripcion)}, {$this->varQuery($calificacion)}, {$this->varQuery($curso)}, {$this->varQuery($seleccion)});";
+        $result = $this->connectionString->query($sql);
         $this->byebye();
-        return $sql;
+        return $result;
     }
 
     function get_secciones() {
@@ -154,7 +154,7 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
         return $result;
     }
-    
+
     function get_curso_unique($codigo) {
         $this->connect();
         $sql = "call proc_curso_unique(" . $this->varQuery($codigo) . ");";
@@ -257,13 +257,9 @@ class mySQLphpClass extends configSQLphp {
         return $result;
     }
 
-    function get_Archivos($codigo, $tipo, $orden) {
+    function get_Clases($codigo) {
         $this->connect();
-        if ($orden == null) {
-            $sql = "call proc_archivos(" . $codigo . ", '" . $tipo . "', null);";
-        } else {
-            $sql = "call proc_archivos(" . $codigo . ", null, " . $orden . ");";
-        }
+        $sql = "call proc_nivelCurso(" . $this->varQuery($codigo) . ");";
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;
