@@ -21,7 +21,7 @@ class category {
             while ($row = $result->fetch_assoc()) {
                 if ($row["Activo"] == "1") {
                     $nombre = rawurlencode($row["Nombre"]);
-                    echo "<div class='category user-select-none' onclick=" . "Redirect('index.php?variable1=" . $nombre . "')" . " style='background: #d7c2fc'>" . $row["Nombre"] . "</div>";
+                    echo "<div class='category user-select-none' onclick=" . "redirect('cursosCategoria.php?variable1=" . $nombre . "')" . " style='background: #d7c2fc'>" . $row["Nombre"] . "</div>";
                 }
             }
         } else {
@@ -276,6 +276,129 @@ class cursos {
             }
         } else {
             echo '<div class="emptyMessage text-muted">Sin resultados</div>';
+        }
+    }
+    
+    function buscar2Categorias($buscar, $inicio, $fin, $fecha, $titulo, $dificultad, $precio, $categoria) {
+        $timeinicio = "00:00:00";
+        $timefin = "23:59:59";
+        if (($inicio == null) || ($fecha == 0))
+            $inicio = "1900-01-01";
+        else
+            $inicio = date('Y-m-d H:i:s', strtotime("$inicio $timeinicio"));
+        if ($fin == null)
+            $fin = date("Y-m-d H:i:s");
+        else
+            $fin = date('Y-m-d H:i:s', strtotime("$fin $timefin"));
+        $dif = "0";
+        if ($dificultad == 1)
+            $dif = "Novato";
+        if ($dificultad == 2)
+            $dif = "Medio";
+        if ($dificultad == 3)
+            $dif = "Experto";
+        $conn = new mySQLphpClass();
+        $result = $conn->get_cursosBusqueda2Categoria($buscar, $inicio, $fin, $fecha, $titulo, $precio, $dif,$categoria);
+        $img = '#';
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+
+
+                    if (array_key_exists('imagen', $row)) {
+                        $img = $row["imagen"];
+                        if (empty($img)) {
+                            $img_str = 'img/banner.png';
+                        } else {
+                            $img_str = 'data:image/jpg;base64,' . base64_encode($img);
+                        }
+                    }
+                    $piece = "'curso.php?cur=" . $row["curso_id"] . "';";
+                    $redirect = '"window.location = ' . $piece . '"';
+                    echo '<div class="col"><div class="tarjeta" onclick=' . $redirect . '>
+                      <img src="' . $img_str . '" alt="">
+                      <div class="tarjetaCont"><p>' . $row["nombre"] . '</p>
+                      <div class="detPrice"><small class="text-muted">' . $row["usuario_fk"] . '</small><br>
+                      <strong class="ml-3">' . $row["precio"] . 'MXN</strong></div></div></div></div>';
+                }
+            } else {
+                echo '<div class="emptyMessage text-muted">Sin resultados de esta categoria</div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Sin resultados de esta categoria</div>';
+        }
+    }
+    
+    function categoriasIguales($categoria, $dificultad, $cantidad) {
+        $dif = "0";
+        if ($dificultad == 1)
+            $dif = "Novato";
+        if ($dificultad == 2)
+            $dif = "Medio";
+        if ($dificultad == 3)
+            $dif = "Experto";
+        $conn = new mySQLphpClass();
+        $result = $conn->get_cursosCategoriosos($categoria, $dif, $cantidad);
+        $img = '#';
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+
+
+                    if (array_key_exists('imagen', $row)) {
+                        $img = $row["imagen"];
+                        if (empty($img)) {
+                            $img_str = 'img/banner.png';
+                        } else {
+                            $img_str = 'data:image/jpg;base64,' . base64_encode($img);
+                        }
+                    }
+                    $piece = "'curso.php?cur=" . $row["curso_id"] . "';";
+                    $redirect = '"window.location = ' . $piece . '"';
+                    echo '<div class="col"><div class="tarjeta" onclick=' . $redirect . '>
+                      <img src="' . $img_str . '" alt="">
+                      <div class="tarjetaCont"><p>' . $row["nombre"] . '</p>
+                      <div class="detPrice"><small class="text-muted">' . $row["usuario_fk"] . '</small><br>
+                      <strong class="ml-3">' . $row["precio"] . 'MXN</strong></div></div></div></div>';
+                }
+            } else {
+                echo '<div class="emptyMessage text-muted">Sin cursos relacionados</div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Sin cursos relacionados</div>';
+        }
+    }
+    
+    function categoriasIgualesCurso($cursoActual, $cantidad) {
+        $conn = new mySQLphpClass();
+        $result = $conn->get_cursoActualCategoriosos($cursoActual, $cantidad);
+        $img = '#';
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+
+
+                    if (array_key_exists('imagen', $row)) {
+                        $img = $row["imagen"];
+                        if (empty($img)) {
+                            $img_str = 'img/banner.png';
+                        } else {
+                            $img_str = 'data:image/jpg;base64,' . base64_encode($img);
+                        }
+                    }
+                    $piece = "'curso.php?cur=" . $row["curso_id"] . "';";
+                    $redirect = '"window.location = ' . $piece . '"';
+                    echo '<div class="col"><div class="tarjeta" onclick=' . $redirect . '>
+                      <img src="' . $img_str . '" alt="">
+                      <div class="tarjetaCont"><p>' . $row["nombre"] . '</p>
+                      <div class="detPrice"><small class="text-muted">' . $row["usuario_fk"] . '</small><br>
+                      <strong class="ml-3">' . $row["precio"] . 'MXN</strong></div></div></div></div>';
+                }
+            } else {
+                echo '<div class="emptyMessage text-muted">Sin cursos relacionados</div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Sin cursos relacionados</div>';
         }
     }
 

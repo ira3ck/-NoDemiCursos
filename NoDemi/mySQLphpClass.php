@@ -182,6 +182,31 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
         return $result;
     }
+    
+    function get_cursosBusqueda2Categoria($buscar, $inicio, $fin, $fecha, $titulo, $precio, $dificultad, $categoria) {
+        $this->connect();
+        $sql = "call proc_busquedaAvanzadaMasCategoria(' $buscar ','  $inicio  ',' $fin '," . $fecha . "," . $titulo . "," . $precio . ",'" . "$dificultad" . "','" . "$categoria" . "');";
+
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function get_cursosCategoriosos($categoria, $dificultad, $cantidad) {
+        $this->connect();
+        $sql = "call proc_CategoriasIguales('" . "$categoria" . "','" . "$dificultad" . "', $cantidad );";
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function get_cursoActualCategoriosos($cursoActual, $cantidad) {
+        $this->connect();
+        $sql = "call proc_CategoriasIgualesCurso('$cursoActual', $cantidad );";
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
 
     function get_noticiasNew($cant) {
         $this->connect();

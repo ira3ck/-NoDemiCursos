@@ -32,6 +32,7 @@ and open the template in the editor.
 
         <?php
         include "classes.php";
+        $curso = new cursos();
         $nav = new navbar();
         $nav->simple();
         $byebye = false;
@@ -219,47 +220,9 @@ and open the template in the editor.
                 </div>
 
                 <div class="row text-center">
-                    <div class="col">
-                        <div class="tarjeta">
-                            <img src="https://cdn.discordapp.com/attachments/401063050464985091/820201212220538909/unknown.png"
-                                 alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta">
-                            <img src="https://cdn.discordapp.com/attachments/401063050464985091/820201212220538909/unknown.png"
-                                 alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA HOLA </p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="tarjeta">
-                            <img src="https://cdn.discordapp.com/attachments/401063050464985091/820201212220538909/unknown.png"
-                                 alt="">
-                            <div class="tarjetaCont">
-                                <p>HOLA HOLA HOLA HOLA HOLA HOLA</p>
-                                <div class="detPrice">
-                                    <small class="text-muted">ira3ck alanís</small><br>
-                                    <strong class="ml-3">413.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $curso->categoriasIgualesCurso($_GET["cur"], 3);
+                    ?>
                 </div>
                 <br>
 
