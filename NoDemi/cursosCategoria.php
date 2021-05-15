@@ -186,7 +186,7 @@ session_start();
                     <input type="checkbox" id="opcFecha" name="opcFecha" value="1"<?php if($opcFecha == 1) echo "checked"  ?>>
                     <label for="opcFecha" class="pr-3"> Por fecha</label>
                     <input type="checkbox" id="opcTitulo" name="opcTitulo" value="1"<?php if($opcTitulo == 1) echo "checked"  ?>>
-                    <label for="opcTitulo" class="pr-3"> Título o descripción del curso</label>
+                    <label for="opcTitulo" class="pr-3"> Título, descripción del curso o creador del curso</label>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control form-control-lg" name="busqueda" id="busqueda"  placeholder="búsqueda" value="<?php echo $busqueda ?>">
                         <div class="input-group-append">

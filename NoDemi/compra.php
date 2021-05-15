@@ -32,12 +32,15 @@ and open the template in the editor.
 
         <?php
         include "classes.php";
+        $compra = new mySQLphpClass();
         $nav = new navbar();
         $nav->simple();
         
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($_POST["pagar"])) {
+                $codigo = $_POST["pagar"];
+                $compra = $compra->cursoXusuario("NULL", $_SESSION["usuario"], $codigo, "null", "i");
                 echo '<script type="text/javascript">
                      alert("Compra exitosa");
                      </script>';
@@ -104,8 +107,8 @@ and open the template in the editor.
                             
                         </div>
                         <div class="row">
-                            <form action="curso.php" method="POST" enctype="multipart/form-data">
-                                <button class="btn btn-primary btnConfig" type="submit" value="<?php echo $codigo; ?>" name="pagar">Pagar</button>
+                            <form action="compra.php" method="POST" enctype="multipart/form-data">
+                                <button class="btn btn-primary btnConfig" type="submit" name="pagar" value="<?php echo $codigo; ?>" >Pagar</button>
                             </form>
                         </div>
                         

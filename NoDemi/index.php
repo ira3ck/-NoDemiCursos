@@ -123,68 +123,24 @@ session_start();
                                 </div>
                             </div>
                         </div>
-
-                        <div class="my-card">
-                            <div class="card" style="width: 18rem;">
-                                <img src="img/card.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Habla todos los idiomas del mundo de manera fluída, aprende
-                                        mientras duermes.</h5>
-                                    <small class="text-muted">Poly G. Lota</small><br>
-                                    <strong>265.35.00MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="my-card">
-                            <div class="card" style="width: 18rem;">
-                                <img src="img/card.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Se la mejor versión de ti mismo todos los días a partir de hoy.
-                                    </h5>
-                                    <small class="text-muted">Emo C. O'Nall</small><br>
-                                    <strong>Gratis</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="my-card">
-                            <div class="card" style="width: 18rem;">
-                                <img src="img/card.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Aprende a permanecer despierto por todo el tiempo que quieras.
-                                    </h5>
-                                    <small class="text-muted">Sr. de la Vida</small><br>
-                                    <strong>99.99MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="my-card">
-                            <div class="card" style="width: 18rem;">
-                                <img src="img/card.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Canta como los ángeles o incluso mejor.</h5>
-                                    <small class="text-muted">Serafín Bendito</small><br>
-                                    <strong>1Millón MXN</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="my-card">
-                            <div class="card" style="width: 18rem;">
-                                <img src="img/card.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Neurocirujía profesional.</h5>
-                                    <small class="text-muted">El médico raro</small><br>
-                                    <strong>Gratis</strong>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- FIN CARRUSEL -->
-
+                
+                <div class="separador mt-5">
+                    <h3 class="mb-5">Lo mas vendido</h3>
+                </div>
+                <div class="row text-center">
+                    <?php $cur->cursosVNC(3, "V"); ?>
+                </div>
+                
+                <div class="separador mt-5">
+                    <h3 class="mb-5">contenido nuevo</h3>
+                </div>
+                
+                <div class="row text-center">
+                    <?php $cur->cursosVNC(3, "N"); ?>
+                </div>
 
                 <div class="separador mt-5">
                     <h3 class="mb-5"><?php echo $catArr[0]['nombre']; ?></h3>

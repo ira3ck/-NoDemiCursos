@@ -98,6 +98,23 @@ class mySQLphpClass extends configSQLphp {
         $this->byebye();
         return $sql;
     }
+    
+    function cursoXusuario($clave, $usuario, $curso, $calificacion, $seleccion) {
+        $this->connect();
+        $sql = "call proc_dml_cursoXusuario(" . $clave . ", '" . $usuario . "'," . $curso . "," . $calificacion . ", '". $seleccion ."');";
+        $this->connectionString->query($sql);
+        $this->byebye();
+        return $sql;
+    }
+    
+    function compradoONo($usuario, $curso) {
+        $this->connect();
+        $sql = "call proc_compradoONo('" . $usuario . "'," . $curso . ");";
+        $reulst = $this->connectionString->query($sql);
+        $this->byebye();
+        return $reulst;
+    }
+    
 
     function seccionDeCurso($curso) {
         $this->connect();
@@ -242,6 +259,76 @@ class mySQLphpClass extends configSQLphp {
 
         $sql = "call proc_misCursos(" . $this->varQuery($codigo) . ", " . $this->varQuery($usuario) . ");";
 
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+      function get_misCursosComprados($usuario) {
+        $this->connect();
+
+        $sql = "call proc_misCursosComprados(" . $this->varQuery($usuario) . ");";
+
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function nivelesCursos($curso) {
+        $this->connect();
+
+        $sql = "call proc_nivelesClase(" . $curso . ");";
+
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function misAlumnos($usuario) {
+        $this->connect();
+
+        $sql = "call proc_misAlumnos('" . $usuario . "');";
+        
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+
+    function misAlumnosCursos($usuario, $curso) {
+        $this->connect();
+
+        $sql = "call proc_misAlumnosCurso('" . $usuario . "',". $curso .");";
+        
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function alumnosGanancia($curso) {
+        $this->connect();
+
+        $sql = "call proc_alumnosGanancia(". $curso .");";
+        
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function cursosVNC($cantidad,$opc) {
+        $this->connect();
+
+        $sql = "call proc_cursosVNC(". $cantidad .", '". $opc ."');";
+        
+        $result = $this->connectionString->query($sql);
+        $this->byebye();
+        return $result;
+    }
+    
+    function ventasTotal($usuario) {
+        $this->connect();
+
+        $sql = "call proc_ventasTotal('" . $usuario . "');";
+        
         $result = $this->connectionString->query($sql);
         $this->byebye();
         return $result;

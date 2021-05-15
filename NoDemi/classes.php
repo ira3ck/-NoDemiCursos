@@ -401,6 +401,19 @@ class cursos {
             echo '<div class="emptyMessage text-muted">Sin cursos relacionados</div>';
         }
     }
+    
+    function compradoONo($usuario, $curso) {
+        $conn = new mySQLphpClass();
+        $result = $conn->compradoONo($usuario, $curso);
+        if ($result) {
+            if ($result->num_rows > 0){
+                echo 'disabled >no se puede comprado';
+            }
+            else{
+                echo ' >comprar';
+            }
+        } 
+    }
 
     function Vistas($cant) {
         $conn = new mySQLphpClass();
@@ -457,13 +470,221 @@ class cursos {
                       <p class="card-text"><small class="text-muted">Última actualización ' . $row["lastUpdate"] . '</small></p></div>
                       <div class="col-2"><form action="crearCurso.php" method="post" enctype="multipart/form-data" class="form-inline">
                       <button type="submit" name="existent" value="' . $row["código"] . '" class="btn btn-secondary" >IR</button>
+                      </form>
+                      <form action="infoMisCursos.php" method="post" enctype="multipart/form-data" class="form-inline">
+                      <button type="submit" name="Detalles" value="' . $row["código"] . '" class="btn btn-secondary" >Detalles</button>
                       </form></div></div></div></div></div></div>';
             }
         } else {
             echo '<div class="emptyMessage text-muted">Parece que no has creado ningún curso</div>';
         }
     }
+    
+    function misCursosDetalle($codigo, $usuario) {
+        $conn = new mySQLphpClass();
+        $result = $conn->get_misCursos($codigo, $usuario);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
 
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
+
+                echo '<div class="row no-gutters">
+                        <div class="col">
+                            <img src='. $img .' alt="Avatar" style="height: auto;">
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col py-2 text-center">
+                            <h3>'. $row["nombre"] .'</h3>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col px-2 text-center">
+                            <p>'. $row["descripcion"] .'</p>
+
+                        </div>
+                    </div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Parece que no has creado ningún curso</div>';
+        }
+    }
+
+    function alumnosGanancia($codigo) {
+        $conn = new mySQLphpClass();
+        $result = $conn->alumnosGanancia($codigo);
+        if ($result->num_rows > 0) { 
+            while ($row = $result->fetch_assoc()) {
+                echo '<p> Alumnos del curso: '. $row["alumnosTotal"] .' </p>';
+                echo '<p> Ganancia del curso: '. $row["ganancia"] .' $ </p>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Parece que no has creado ningún curso</div>';
+        }
+    }
+    
+    function misCursosComprados($usuario) {
+        $conn = new mySQLphpClass();
+        $result = $conn->get_misCursosComprados($usuario);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
+
+                echo '<div class="card listaCard"><div class="row no-gutters"><div class="col-md-4">
+                      <img src="' . $img . '" class="card-img" alt="...">
+                      </div><div class="col-md-8"><div class="card-body"><h5 class="card-title">' . $row["nombre"] . '</h5><p class="card-text">'
+                . $row["descripcion"] . '</p><div class="row no-gutters"><div class="col-10">
+                      <p class="card-text"><small class="text-muted">Última actualización ' . $row["lastUpdate"] . '</small></p></div>
+                      <div class="col-2"><form action="crearCurso.php" method="post" enctype="multipart/form-data" class="form-inline">
+                      <button type="submit" name="existent" value="' . $row["código"] . '" class="btn btn-secondary" >IR</button>
+                      </form></div></div></div></div></div></div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">Parece que no has comprado ningún curso</div>';
+        }
+    }
+
+    function nivelesCursos($curso) {
+        $conn = new mySQLphpClass();
+        $result = $conn->nivelesCursos($curso);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="card">
+                                <div class="card-header" id="ds">
+                                    <h2 class="mb-0">
+                                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapse'.$row["titulo"].'"
+                                                aria-expanded="false" aria-controls="collapse'.$row["titulo"].'">
+                                            ' . $row["titulo"] . '
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapse'.$row["titulo"].'" class="collapse show" aria-labelledby="heading'.$row["titulo"].'"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+
+                                        <p>' . $row["Descripcion"] . '</p>
+
+                                    </div>
+                                </div>
+                            </div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">este curso no cuenta con contenido</div>';
+        }
+    }
+    function misAlumnos($usuario) {
+        $conn = new mySQLphpClass();
+        $result = $conn->misAlumnos($usuario);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
+                echo '<div class="card listaCard" onclick="Redirect("...")">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="' . $img . '"
+                                             class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">' . $row["usuario"] . '</h5>
+                                            <p class="card-text">
+                                                estudiando el curso ' . $row["nombre"] . '.
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">este curso no cuenta con contenido</div>';
+        }
+    }
+    function misAlumnosCurso($usuario,$curso) {
+        $conn = new mySQLphpClass();
+        $result = $conn->misAlumnosCursos($usuario,$curso);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
+                echo '<div class="card listaCard" onclick="Redirect("...")">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="' . $img . '"
+                                             class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">' . $row["usuario"] . '</h5>
+                                            <p class="card-text">
+                                                
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">este curso no cuenta con contenido</div>';
+        }
+    }
+    
+    function cursosVNC($cantidad,$opc) {
+        $conn = new mySQLphpClass();
+        $result = $conn->cursosVNC($cantidad,$opc);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $img = "https://pbs.twimg.com/media/EiNYM5CWAAAh9PV?format=png&name=240x240";
+
+                $img_str = base64_encode($row["imagen"]);
+                if (!empty($row["imagen"])) {
+                    $img = "data:image/jpg;base64," . $img_str;
+                }
+                $piece = "'curso.php?cur=" . $row["curso_id"] . "';";
+                $redirect = '"window.location = ' . $piece . '"';
+                echo '<div class="col"><div class="tarjeta" onclick=' . $redirect . '>
+                      <img src="' . $img . '" alt="">
+                      <div class="tarjetaCont"><p>' . $row["nombre"] . '</p>
+                      <div class="detPrice"><small class="text-muted">' . $row["usuario_fk"] . '</small><br>
+                      <strong class="ml-3">' . $row["precio"] . 'MXN</strong></div></div></div></div>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">por el momento no contamos con cursos vendidos</div>';
+        }
+    }
+    
+    function ventasTotal($usuario) {
+        $conn = new mySQLphpClass();
+        $result = $conn->ventasTotal($usuario);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<p> Alumnos Totales: '. $row["alumnosTotal"] .' </p>';
+                echo '<p> Ganancia Totales: '. $row["ganancia"] .' $ </p>';
+            }
+        } else {
+            echo '<div class="emptyMessage text-muted">este curso no cuenta con contenido</div>';
+        }
+    }
+    
     function lasNoticias($orden, $estado) {
         $conn = new mySQLphpClass();
         $result = $conn->get_lasNoticias($orden, $estado, null);

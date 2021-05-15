@@ -3,18 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/css/style.css</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/compra.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/js/configUser.js</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/mySQLphpClass.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/pruebas.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/ConfigUser.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/myselfTeach.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/classes.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/myself.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/index.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/curso.php</file>
-            <file>file:/D:/xampp/htdocs/-NoDemiCursos/NoDemi/js/scripts.js</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/compra.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/curso.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/buscar.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/mySQLphpClass.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/index.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/myselfTeach.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/crearCurso.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/infoMisCursos.php</file>
+            <file>file:/C:/xampp/htdocs/nodemi/-NoDemiCursos/NoDemi/classes.php</file>
         </group>
     </open-files>
 </project-private>

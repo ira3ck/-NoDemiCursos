@@ -73,7 +73,7 @@ session_start();
                             <a class="list-group-item list-group-item-action active text-center" id="list-home-list"
                                data-toggle="list" href="#list-home" role="tab" aria-controls="home">Continuar Viendo</a>
                             <a class="list-group-item list-group-item-action text-center" id="list-profile-list"
-                               data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Nuevos</a>
+                               data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Alumnos</a>
                             <a class="list-group-item list-group-item-action text-center" id="list-messages-list"
                                data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Cursos
                                 terminados</a>
@@ -117,49 +117,9 @@ session_start();
                         </div>
                         
                         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            <?php $cur->misAlumnos($_SESSION["usuario"]); ?>
 
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
                             <div class="card listaCard" onclick="Redirect('preview.php')">
@@ -185,175 +145,9 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card listaCard" onclick="Redirect('preview.php')">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="https://pbs.twimg.com/media/EdqjfxzXgAAdIgm?format=jpg&name=4096x4096"
-                                             class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">El trabajo es demasiado complicado</h5>
-                                            <p class="card-text">
-                                                Resulta que el trabajo es muy difícil. No sabemos qué hacer al respecto,
-                                                pero sí
-                                                es muy complicado.
-                                                Pero, ¿qué hacer al respecto? Esa es una muy buena pregunta, ya veremos qué
-                                                se
-                                                podrá hacer al respecto.
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Última actualización hace 3
-                                                    minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php $cur->misCursosComprados($_SESSION["usuario"]); ?>
                         </div>
 
                         <div class="tab-pane fade" id="list-course" role="tabpanel" aria-labelledby="list-home-list">
@@ -408,6 +202,7 @@ session_start();
                     <div class="row no-gutters">
                         <div class="col py-3 text-center">
                             <p><?php echo $_SESSION["nombre"] . ' ' . $_SESSION["paterno"] . ' ' . $_SESSION["materno"] ?></p>
+                            <?php $cur->ventasTotal($_SESSION["usuario"]); ?>
                         </div>
                     </div>
                 </div>

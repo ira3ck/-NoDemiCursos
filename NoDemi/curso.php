@@ -123,7 +123,7 @@ and open the template in the editor.
                         <div class="col-4">
                             <h1>MXN$ <?php echo $precio; ?></h1>
                             <form action="compra.php" method="POST" enctype="multipart/form-data">
-                                <button class="btn btn-primary btnConfig" type="submit" name="buy" value="<?php echo $codigo; ?>">Comprar</button>
+                                <button class="btn btn-primary btnConfig" type="submit" name="buy" value="<?php echo $codigo; ?>"<?php echo $curso->compradoONo( $_SESSION["usuario"],$codigo) ?> </button>
                             </form>
                         </div>
                     </div>
@@ -142,51 +142,9 @@ and open the template in the editor.
 
                     <div>
                         <div class="accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="ds">
-                                    <h2 class="mb-0">
-                                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOneA"
-                                                aria-expanded="true" aria-controls="collapseOneA">
-                                            Introduccion
-                                        </button>
-                                    </h2>
-                                </div>
-
-                                <div id="collapseOneA" class="collapse show" aria-labelledby="headingOneA"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-
-                                        <ul>
-                                            <li>que es el arte</li>
-                                            <li>corrientes de arte</li>
-                                            <li>referencias</li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwoA">
-                                    <h2 class="mb-0">
-                                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseTwoA"
-                                                aria-expanded="false" aria-controls="collapseTwoA">
-                                            pintura
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="collapseTwoA" class="collapse" aria-labelledby="headingTwoA"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="row py-3">
-                                            <ul>
-                                                <li>uso de las brochas</li>
-                                                <li>teoria del color</li>
-                                                <li>pinceladas finales</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                    $curso->nivelesCursos($_GET["cur"]);
+                    ?>
                         </div>
                     </div>
 
